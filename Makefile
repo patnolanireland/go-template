@@ -1,7 +1,7 @@
 VERSION := 0.0.1-SNAPSHOT
 
 APP = go-template
-DOCKER_REG = docker.io/damiannolan
+DOCKER_REG = docker.io/patnolanireland
 TAG = $(VERSION)
 USER = $(shell whoami)
 
@@ -25,6 +25,9 @@ helm-deploy-dev:
 
 test:
 	go test ./... -coverprofile=coverage.out && go tool cover -func=coverage.out
+
+commit:
+	git cz
 
 .PHONY: \
 		docker-build \

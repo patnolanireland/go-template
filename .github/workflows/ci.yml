@@ -14,11 +14,10 @@ jobs:
             - uses: actions/setup-go@v2
               with:
                 go-version: '^1.14.0' # The Go version to download (if necessary) and use.
-            - run: go version
-            - run: make
-            - run: make test
-            - name: "Go Semantic Release"
             - uses: go-semantic-release/action@v1
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }} 
-                changelog-file: 
+                changelog-file: - run: go version
+            - run: make
+            - run: make test
+            

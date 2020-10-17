@@ -10,18 +10,15 @@ jobs:
         name: Build & Test
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout source code
+            - name: Setup Golang, build and test source code
             - uses: actions/checkout@v2
-            - name: Setup Golang
-            - uses: actions/setup-go@v2
+              uses: actions/setup-go@v2
               with:
                 go-version: '^1.14.0' # The Go version to download (if necessary) and use.
-            - name: Setup semantic-release
-            - uses: go-semantic-release/action@v1
+              uses: go-semantic-release/action@v1
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }} 
                 changelog-file: 
-            - name: Verify go version, build and test source code
               run: | 
                 go version
                 make

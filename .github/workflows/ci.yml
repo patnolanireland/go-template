@@ -18,16 +18,16 @@ jobs:
           - run: | 
               go version
               make
+              make test
     release:
-      name: Create a Semantic Release
-      runs-on: ubuntu-latest
-      needs: build
-      steps:
-        - uses: actions/checkout@v2
-        - uses: go-semantic-release/action@v1
-          id: semrel
-          with:
-            github-token: ${{ secrets.GITHUB_TOKEN }} 
-            changelog-file: CHANGELOG.md 
-        - run: echo "Semantic Release version ${{ steps.semrel.outputs.version }}"
-            
+        name: Create a Semantic Release
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+          - uses: actions/checkout@v2
+          - uses: go-semantic-release/action@v1
+            id: semrel
+            with:
+              github-token: ${{ secrets.GITHUB_TOKEN }} 
+              changelog-file: CHANGELOG.md 
+          - run: echo "Semantic Release version ${{ steps.semrel.outputs.version }}"

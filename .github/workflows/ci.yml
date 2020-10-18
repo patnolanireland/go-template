@@ -30,4 +30,5 @@ jobs:
             with:
               github-token: ${{ secrets.GITHUB_TOKEN }} 
               changelog-file: CHANGELOG.md 
-          - run: echo "Semantic Release version ${{ steps.semrel.outputs.version }}"
+          - run: |
+              echo "Semantic Release version ${{ steps.semrel.outputs.version }}"

@@ -7,9 +7,10 @@ on:
 
 jobs:
     build:
-        name: Setup Golang
+        name: Setup Golang, Build Docker Image & Run Unit Tests
         runs-on: ubuntu-latest
         steps:
+          - name: Setup, Build & Test 
           - uses: actions/checkout@v2
           - uses: actions/setup-go@v2
             with:
@@ -17,4 +18,17 @@ jobs:
           - run: | 
               go version
               make
+    release:
+      name: Create a Semantic Release
+      runs-on: ubuntu-latest
+      needs: build
+      steps:
+        - name: Semantic Release
+        - uses: actions/checkout@v2
+        - uses: go-semantic-release/action@v1
+          id: semrel
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }} 
+            changelog-file: CHANGELOG.md 
+        - run: echo "Semantic Release version ${{ steps.semrel.outputs.version }}"
             

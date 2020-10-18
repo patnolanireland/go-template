@@ -10,7 +10,6 @@ jobs:
         name: Setup Golang, Build Docker Image & Run Unit Tests
         runs-on: ubuntu-latest
         steps:
-          - name: Setup, Build & Test 
           - uses: actions/checkout@v2
           - uses: actions/setup-go@v2
             with:
